@@ -14,8 +14,7 @@ public class Lesson003_03 extends AppCompatActivity {
     private TextView textCounter1;  // пользовательский элемент 1-го счетчика
     private TextView textCounter2;  // пользовательский элемент 2-го счетчика
 
-    private int counter1 = 0;
-    private int counter2 = 0; // второй счетчик
+    private Counters counters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
