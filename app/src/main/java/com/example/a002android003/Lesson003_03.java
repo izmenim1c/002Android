@@ -21,22 +21,8 @@ public class Lesson003_03 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main003_02);
         initView();
-
-        Button button2 = findViewById(R.id.button2);
-        //анонимный класс, он реализует интерфейс View.OnClickListener,
-        // у него переопределим метод onClick
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter2++;
-//установить текст на TextView
-                setTextCounter(textCounter2, counter2);
-                            }
-        });
-        //       counters = new Counters();
-
+        counters = new Counters();
     }
-
 
         private void initView() {
         // Получить пользовательские элементы по идентификатору
@@ -45,7 +31,7 @@ public class Lesson003_03 extends AppCompatActivity {
         //textCounter3 = findViewById(R.id.textView3);
         //textCounter4 = findViewById(R.id.textView4);
 
-        //initButton2ClickListener();
+        initButton2ClickListener();
         //initButton3ClickListener();
         //initButton4ClickListener();
     }
@@ -54,8 +40,8 @@ public class Lesson003_03 extends AppCompatActivity {
        // counters.incrementCounter2();
         //setTextCounter(textCounter1, counters.getCounter2());
 
-        counter1++;
-        setTextCounter(textCounter1,counter1 );
+        counters.incrementCounter1();
+        setTextCounter(textCounter1,counters.getCounter1() );
     }
     // Отображение данных на экране
     private void setTextCounters(){
@@ -69,6 +55,16 @@ public class Lesson003_03 extends AppCompatActivity {
         textCounter.setText(String.format(Locale.getDefault(), "%d", counter));
     }
 
+    private void initButton2ClickListener() {
+        Button button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counters.incrementCounter2();
+                setTextCounter(textCounter2, counters.getCounter2());
+            }
+        });
+    }
 
 
 
