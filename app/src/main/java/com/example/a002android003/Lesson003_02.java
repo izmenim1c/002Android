@@ -1,17 +1,18 @@
 package com.example.a002android003;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Locale;
 
-public class Lesson003 extends AppCompatActivity {
+public class Lesson003_02 extends AppCompatActivity {
 
     private TextView textCounter1;  // пользовательский элемент 1-го счетчика
     private int counter1 = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +39,6 @@ public class Lesson003 extends AppCompatActivity {
        // counters.incrementCounter2();
         //setTextCounter(textCounter1, counters.getCounter2());
 
-        //Это самый простой способ обработки нажатия, но его не рекомендуется использовать. В этом случае
-        //будет использоваться установка стандартного слушателя DeclaredOnClickListener, который
-        //определяет заданный метод через отражение (reflection). Поиск вызываемого метода в таком случае
-        //происходит дольше, чем если задать его конкретно
         counter1++;
         setTextCounter(textCounter1,counter1 );
     }
