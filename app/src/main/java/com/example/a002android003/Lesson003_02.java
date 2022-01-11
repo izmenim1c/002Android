@@ -24,14 +24,15 @@ public class Lesson003_02 extends AppCompatActivity {
         initView();
 
         Button button2 = findViewById(R.id.button2);
+        //анонимный класс, он реализует интерфейс View.OnClickListener,
+        // у него переопределим метод onClick
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 counter2++;
 //установить текст на TextView
-                textCounter2.setText(String.format(Locale.getDefault(), "%d",
-                        counter2));
-            }
+                setTextCounter(textCounter2, counter2);
+                            }
         });
         //       counters = new Counters();
 
