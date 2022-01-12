@@ -3,7 +3,9 @@ package com.example.a002android003;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Counters  {
+import java.io.Serializable;
+
+public class Counters   implements Serializable {
     private int counter1;
     private int counter2;
     private int counter3;

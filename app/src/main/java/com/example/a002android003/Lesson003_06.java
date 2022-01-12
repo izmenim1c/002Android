@@ -5,11 +5,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
 public class Lesson003_06 extends AppCompatActivity implements View.OnClickListener {
+
+    private final static String keyCounters = "Counters";
 
     private TextView textCounter1;  // пользовательский элемент 1-го счетчика
     private TextView textCounter2;  // пользовательский элемент 2-го счетчика
@@ -45,13 +48,7 @@ public class Lesson003_06 extends AppCompatActivity implements View.OnClickListe
         counters.incrementCounter1();
         setTextCounter(textCounter1,counters.getCounter1() );
     }
-    // Отображение данных на экране
-    private void setTextCounters(){
-        //setTextCounter(textCounter1, counters.getCounter1());
-        //setTextCounter(textCounter2, counters.getCounter2());
-        //setTextCounter(textCounter3, counters.getCounter3());
-        //setTextCounter(textCounter4, counters.getCounter4());
-    }
+
     // Установить текст на TextView
     private void setTextCounter(TextView textCounter, int counter){
         textCounter.setText(String.format(Locale.getDefault(), "%d", counter));
@@ -94,4 +91,25 @@ public class Lesson003_06 extends AppCompatActivity implements View.OnClickListe
         }
     };
 
+    // Сохранение данных
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle instanceState) {
+        super.onSaveInstanceState(instanceState);
+        instanceState.putSerializable(keyCounters, counters);
+
+    }
+    // Восстановление данных
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
+        super.onRestoreInstanceState(instanceState);
+        counters = (Counters) instanceState.getSerializable(keyCounters);
+        setTextCounters();
+    }
+    // Отображение данных на экране
+    private void setTextCounters(){
+        setTextCounter(textCounter1, counters.getCounter1());
+        setTextCounter(textCounter2, counters.getCounter2());
+        setTextCounter(textCounter3, counters.getCounter3());
+        setTextCounter(textCounter4, counters.getCounter4());
+    }
 }
