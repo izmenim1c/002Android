@@ -3,9 +3,8 @@ package com.example.a002android003;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
 
-public class Counters   implements Serializable {
+public class Counters   implements Parcelable {
     private int counter1;
     private int counter2;
     private int counter3;
@@ -19,6 +18,24 @@ public class Counters   implements Serializable {
     }
 
 
+    protected Counters(Parcel in) {
+        counter1 = in.readInt();
+        counter2 = in.readInt();
+        counter3 = in.readInt();
+        counter4 = in.readInt();
+    }
+
+    public static final Creator<Counters> CREATOR = new Creator<Counters>() {
+        @Override
+        public Counters createFromParcel(Parcel in) {
+            return new Counters(in);
+        }
+
+        @Override
+        public Counters[] newArray(int size) {
+            return new Counters[size];
+        }
+    };
 
     public int getCounter1() {
         return counter1;
@@ -53,5 +70,16 @@ public class Counters   implements Serializable {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(counter1);
+        dest.writeInt(counter2);
+        dest.writeInt(counter3);
+        dest.writeInt(counter4);
+    }
 }
