@@ -9,17 +9,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
-public class Lesson003_04 extends AppCompatActivity {
+public class Lesson003_04 extends AppCompatActivity implements View.OnClickListener {
 
     private TextView textCounter1;  // пользовательский элемент 1-го счетчика
     private TextView textCounter2;  // пользовательский элемент 2-го счетчика
+    private TextView textCounter3; // пользовательский элемент 3-го счетчика
+    //private TextView textCounter4; // пользовательский элемент 4-го счетчика
 
     private Counters counters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main003_02);
+        setContentView(R.layout.activity_main003_04);
         initView();
         counters = new Counters();
     }
@@ -28,11 +30,11 @@ public class Lesson003_04 extends AppCompatActivity {
         // Получить пользовательские элементы по идентификатору
         textCounter1 = findViewById(R.id.textView1);
         textCounter2 = findViewById(R.id.textView2);
-        //textCounter3 = findViewById(R.id.textView3);
+        textCounter3 = findViewById(R.id.textView3);
         //textCounter4 = findViewById(R.id.textView4);
 
         initButton2ClickListener();
-        //initButton3ClickListener();
+        initButton3ClickListener();
         //initButton4ClickListener();
     }
     // Обработка кнопки через атрибут onClick в макете
@@ -66,6 +68,16 @@ public class Lesson003_04 extends AppCompatActivity {
         });
     }
 
+    private void initButton3ClickListener(){
+        Button button3 = findViewById(R.id.button3);
+        button3.setOnClickListener(this);
+    }
 
-
+    @Override
+    public void onClick(View v) {
+        // Если на экране один пользовательский элемент, то такая обработка имеет смысл,
+        // но если на экране несколько элементов, здесь придется создавать "лишние" условия.
+        counters.incrementCounter3();
+        setTextCounter(textCounter3, counters.getCounter3());
+    }
 }
