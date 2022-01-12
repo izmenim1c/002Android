@@ -14,7 +14,7 @@ public class Lesson003_05 extends AppCompatActivity implements View.OnClickListe
     private TextView textCounter1;  // пользовательский элемент 1-го счетчика
     private TextView textCounter2;  // пользовательский элемент 2-го счетчика
     private TextView textCounter3; // пользовательский элемент 3-го счетчика
-    //private TextView textCounter4; // пользовательский элемент 4-го счетчика
+    private TextView textCounter4; // пользовательский элемент 4-го счетчика
 
     private Counters counters;
 
@@ -31,11 +31,11 @@ public class Lesson003_05 extends AppCompatActivity implements View.OnClickListe
         textCounter1 = findViewById(R.id.textView1);
         textCounter2 = findViewById(R.id.textView2);
         textCounter3 = findViewById(R.id.textView3);
-        //textCounter4 = findViewById(R.id.textView4);
+        textCounter4 = findViewById(R.id.textView4);
 
         initButton2ClickListener();
         initButton3ClickListener();
-        //initButton4ClickListener();
+        initButton4ClickListener();
     }
     // Обработка кнопки через атрибут onClick в макете
     public void button1_onClick(View view) {
@@ -80,4 +80,18 @@ public class Lesson003_05 extends AppCompatActivity implements View.OnClickListe
         counters.incrementCounter3();
         setTextCounter(textCounter3, counters.getCounter3());
     }
+
+    private void initButton4ClickListener(){
+        Button button4 = findViewById(R.id.button4);
+        button4.setOnClickListener(button4ClickListener);
+    }
+    public View.OnClickListener button4ClickListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v) {
+            counters.incrementCounter4();
+            setTextCounter(textCounter4, counters.getCounter4());
+        }
+    };
+
 }
